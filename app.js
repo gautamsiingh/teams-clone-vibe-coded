@@ -65,6 +65,7 @@ const paneTitle = document.getElementById("paneTitle");
 const chatGroups = document.getElementById("chatGroups");
 const chatEmptyState = document.getElementById("chatEmptyState");
 const chatSearchInput = document.getElementById("chatSearchInput");
+const chatListPane = document.querySelector(".chat-list-pane");
 const filterButton = document.getElementById("filterButton");
 const newChatButton = document.getElementById("newChatButton");
 const appsButton = document.getElementById("appsButton");
@@ -81,6 +82,8 @@ const formatButton = document.getElementById("formatButton");
 const attachButton = document.getElementById("attachButton");
 const emojiButton = document.getElementById("emojiButton");
 const loopButton = document.getElementById("loopButton");
+const mobileChatsButton = document.getElementById("mobileChatsButton");
+const mobileBackdrop = document.getElementById("mobileBackdrop");
 
 const formatTime = () =>
   new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
@@ -88,6 +91,19 @@ const formatTime = () =>
 const autosizeComposer = () => {
   composerInput.style.height = "auto";
   composerInput.style.height = `${Math.min(composerInput.scrollHeight, 180)}px`;
+};
+
+const isPhoneLayout = () => window.innerWidth <= 860;
+
+const setMobileDrawer = (open) => {
+  if (!isPhoneLayout()) {
+    chatListPane.classList.remove("mobile-open");
+    mobileBackdrop.classList.add("hidden");
+    return;
+  }
+
+  chatListPane.classList.toggle("mobile-open", open);
+  mobileBackdrop.classList.toggle("hidden", !open);
 };
 
 const showToast = (title, body) => {
@@ -162,6 +178,8 @@ const setActiveChat = (chatId) => {
   chatCards().forEach((card) => {
     card.classList.toggle("selected", card.dataset.chat === chatId);
   });
+
+  setMobileDrawer(false);
 };
 
 const updateGroupVisibility = () => {
@@ -306,6 +324,14 @@ appsButton.addEventListener("click", () => {
   showToast("Apps", "Store, approvals, and custom app surfaces would open here.");
 });
 
+mobileChatsButton.addEventListener("click", () => {
+  setMobileDrawer(true);
+});
+
+mobileBackdrop.addEventListener("click", () => {
+  setMobileDrawer(false);
+});
+
 videoCallButton.addEventListener("click", () => {
   showToast("Meeting link ready", `Starting a video call with ${chats[activeChatId].title}.`);
 });
@@ -339,6 +365,10 @@ document.addEventListener("click", (event) => {
   if (!moreActionsMenu.contains(event.target) && event.target !== moreActionsButton) {
     moreActionsMenu.classList.add("hidden");
   }
+});
+
+window.addEventListener("resize", () => {
+  setMobileDrawer(false);
 });
 
 formatButton.addEventListener("click", () => {
