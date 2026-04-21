@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teams Chat UI</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="activity-rail">
+        <div class="brand-tile" aria-label="Teams">
+          <span class="brand-icon">T</span>
+        </div>
+
+        <nav class="rail-nav" aria-label="Primary">
+          <button class="rail-item" aria-label="Activity" data-rail-view="Activity">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 4 8v8l8 5 8-5V8l-8-5Zm0 2.1 5.8 3.6v6.7L12 19l-5.8-3.6V8.7L12 5.1Z" />
+            </svg>
+          </button>
+          <button class="rail-item active" aria-label="Chat" data-rail-view="Chat">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 5.5A2.5 2.5 0 0 1 7.5 3h9A2.5 2.5 0 0 1 19 5.5v7a2.5 2.5 0 0 1-2.5 2.5h-5.1L7 18.7V15A2.5 2.5 0 0 1 5 12.5v-7Zm2.5-.5a.5.5 0 0 0-.5.5v7c0 .3.2.5.5.5H9v1.7l2.1-1.7h5.4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-9Z" />
+            </svg>
+          </button>
+          <button class="rail-item" aria-label="Teams" data-rail-view="Teams">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 5h11v2H11v10H8V7H4V5Zm13 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm-1.5 7h3A3.5 3.5 0 0 1 22 18.5V20h-2v-1.5c0-.8-.7-1.5-1.5-1.5h-3v-2Z" />
+            </svg>
+          </button>
+          <button class="rail-item" aria-label="Calendar" data-rail-view="Calendar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z" />
+            </svg>
+          </button>
+          <button class="rail-item" aria-label="Calls" data-rail-view="Calls">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.8 5A1.8 1.8 0 0 0 6 6.8c0 6 5.2 11.2 11.2 11.2a1.8 1.8 0 0 0 1.8-1.8v-2.1l-3.2-.7-1.4 1.4a8.8 8.8 0 0 1-4.2-4.2l1.4-1.4L9.9 5H7.8Z" />
+            </svg>
+          </button>
+          <button class="rail-item" aria-label="Files" data-rail-view="Files">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 4h6l2 2h6v14H5V4Zm2 2v12h10V8h-4.8l-2-2H7Z" />
+            </svg>
+          </button>
+        </nav>
+
+        <button class="rail-item rail-bottom" aria-label="Apps" id="appsButton">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6h4v4H6V6Zm8 0h4v4h-4V6ZM6 14h4v4H6v-4Zm8 0h4v4h-4v-4Z" />
+          </svg>
+        </button>
+      </aside>
+
+      <section class="chat-list-pane">
+        <header class="pane-header">
+          <div>
+            <p class="eyebrow" id="paneEyebrow">Chat</p>
+            <h1 id="paneTitle">Recent</h1>
+          </div>
+          <div class="header-actions">
+            <button class="icon-btn" aria-label="Filter chats" id="filterButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 6h14v2H5V6Zm3 5h8v2H8v-2Zm3 5h2v2h-2v-2Z" />
+              </svg>
+            </button>
+            <button class="icon-btn primary" aria-label="New chat" id="newChatButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm5.7 10.3 3.5 3.5-1.4 1.4-3.5-3.5 1.4-1.4Z" />
+          </svg>
+          <input type="search" placeholder="Search" id="chatSearchInput" />
+        </label>
+
+        <div class="chat-groups" id="chatGroups">
+          <div class="group-label">Pinned</div>
+          <button class="chat-card selected" data-chat="design" data-title="Supriya Patel" data-preview="Can we tighten the spacing in the sidebar before review?" data-group="Pinned" data-unread="true">
+            <div class="avatar gradient-a">SP</div>
+            <div class="card-content">
+              <div class="card-topline">
+                <strong>Supriya Patel</strong>
+                <span>2:14 PM</span>
+              </div>
+              <p class="card-preview">Can we tighten the spacing in the sidebar before review?</p>
+            </div>
+          </button>
+
+          <div class="group-label">Today</div>
+          <button class="chat-card" data-chat="marketing" data-title="Arjun Mehta" data-preview="The campaign deck is ready. I dropped the final slides here." data-group="Today" data-unread="false">
+            <div class="avatar gradient-b">AM</div>
+            <div class="card-content">
+              <div class="card-topline">
+                <strong>Arjun Mehta</strong>
+                <span>1:02 PM</span>
+              </div>
+              <p class="card-preview">The campaign deck is ready. I dropped the final slides here.</p>
+            </div>
+          </button>
+          <button class="chat-card" data-chat="standup" data-title="UX Standup" data-preview="Priya: shared the updated flow for the mobile composer." data-group="Today" data-unread="true">
+            <div class="avatar gradient-c">UX</div>
+            <div class="card-content">
+              <div class="card-topline">
+                <strong>UX Standup</strong>
+                <span>11:48 AM</span>
+              </div>
+              <p class="card-preview">Priya: shared the updated flow for the mobile composer.</p>
+            </div>
+          </button>
+          <button class="chat-card" data-chat="ops" data-title="Ops Desk" data-preview="Reminder: deployment freeze begins Friday at 6 PM." data-group="Yesterday" data-unread="false">
+            <div class="avatar gradient-d">OP</div>
+            <div class="card-content">
+              <div class="card-topline">
+                <strong>Ops Desk</strong>
+                <span>Yesterday</span>
+              </div>
+              <p class="card-preview">Reminder: deployment freeze begins Friday at 6 PM.</p>
+            </div>
+          </button>
+        </div>
+        <div class="empty-state hidden" id="chatEmptyState">
+          <h3>No chats found</h3>
+          <p>Try a different name or clear the active filter.</p>
+        </div>
+      </section>
+
+      <main class="conversation-pane">
+        <header class="conversation-header">
+          <div class="conversation-meta">
+            <div class="avatar gradient-a large" id="activeAvatar">SP</div>
+            <div>
+              <h2 id="activeTitle">Supriya Patel</h2>
+              <p id="activeStatus">Available</p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="icon-btn" aria-label="Start video call" id="videoCallButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h8A2.5 2.5 0 0 1 16 7.5v1.6l4.2-2.5a.5.5 0 0 1 .8.4v10a.5.5 0 0 1-.8.4L16 14.9v1.6a2.5 2.5 0 0 1-2.5 2.5h-8A2.5 2.5 0 0 1 3 16.5v-9Z" />
+              </svg>
+            </button>
+            <button class="icon-btn" aria-label="Start call" id="callButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.8 5A1.8 1.8 0 0 0 6 6.8c0 6 5.2 11.2 11.2 11.2a1.8 1.8 0 0 0 1.8-1.8v-2.1l-3.2-.7-1.4 1.4a8.8 8.8 0 0 1-4.2-4.2l1.4-1.4L9.9 5H7.8Z" />
+              </svg>
+            </button>
+            <div class="menu-wrap">
+              <button class="icon-btn" aria-label="More actions" id="moreActionsButton">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm6 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm6 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" />
+                </svg>
+              </button>
+              <div class="dropdown-menu hidden" id="moreActionsMenu">
+                <button class="dropdown-item" type="button" data-action="pin">Pin conversation</button>
+                <button class="dropdown-item" type="button" data-action="mute">Mute notifications</button>
+                <button class="dropdown-item" type="button" data-action="export">Export transcript</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="chat-thread" id="chatThread">
+          <div class="thread-day">Today</div>
+
+          <article class="message-row incoming">
+            <div class="avatar gradient-a">SP</div>
+            <div class="message-group">
+              <div class="message-head">
+                <strong>Supriya Patel</strong>
+                <span>2:02 PM</span>
+              </div>
+              <div class="message-bubble">
+                We are very close. The left rail feels right, but the chat list could use a little more breathing room.
+              </div>
+            </div>
+          </article>
+
+          <article class="message-row outgoing">
+            <div class="message-group">
+              <div class="message-head">
+                <strong>You</strong>
+                <span>2:05 PM</span>
+              </div>
+              <div class="message-bubble">
+                I’ll adjust the card spacing and make the active state sharper so it reads more like Teams.
+              </div>
+            </div>
+          </article>
+
+          <article class="message-row incoming">
+            <div class="avatar gradient-a">SP</div>
+            <div class="message-group">
+              <div class="message-head">
+                <strong>Supriya Patel</strong>
+                <span>2:08 PM</span>
+              </div>
+              <div class="message-bubble attachment">
+                <div class="file-card">
+                  <div class="file-icon">XD</div>
+                  <div>
+                    <strong>Teams_Chat_Ref.fig</strong>
+                    <p>12.8 MB</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="message-row incoming">
+            <div class="avatar gradient-a">SP</div>
+            <div class="message-group">
+              <div class="message-head">
+                <strong>Supriya Patel</strong>
+                <span>2:14 PM</span>
+              </div>
+              <div class="message-bubble">
+                Can we tighten the spacing in the sidebar before review?
+              </div>
+              <div class="message-reactions">
+                <span>👍 2</span>
+                <span>✨ 1</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <footer class="composer-shell">
+          <div class="composer-toolbar">
+            <button class="icon-btn" aria-label="Format message" id="formatButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 5h12v2H6V5Zm2 5h8v2H8v-2Zm-2 5h12v2H6v-2Z" />
+              </svg>
+            </button>
+            <button class="icon-btn" aria-label="Attach file" id="attachButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16.5 6.5v8.8a4.3 4.3 0 1 1-8.6 0V7a2.8 2.8 0 0 1 5.6 0v7.8a1.3 1.3 0 1 1-2.6 0V8.5h-2v6.3a3.3 3.3 0 1 0 6.6 0V7a4.8 4.8 0 0 0-9.6 0v8.3a6.3 6.3 0 1 0 12.6 0V6.5h-2Z" />
+              </svg>
+            </button>
+            <button class="icon-btn" aria-label="Insert emoji" id="emojiButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18Zm-3 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm6 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-6.7 4.2a4.5 4.5 0 0 0 7.4 0l-1.6-1.2a2.5 2.5 0 0 1-4.2 0l-1.6 1.2Z" />
+              </svg>
+            </button>
+            <button class="icon-btn" aria-label="Loop components" id="loopButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6h5v2H8v3H6V6Zm7 0h5v5h-2V8h-3V6Zm3 7h2v5h-5v-2h3v-3ZM6 13h2v3h3v2H6v-5Z" />
+              </svg>
+            </button>
+          </div>
+
+          <form class="composer" id="composerForm">
+            <textarea id="composerInput" rows="1" placeholder="Type a new message"></textarea>
+            <button class="send-btn" type="submit" aria-label="Send message">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 20 21 12 3 4v6l12 2-12 2v6Z" />
+              </svg>
+            </button>
+          </form>
+        </footer>
+      </main>
+    </div>
+
+    <template id="messageTemplate">
+      <article class="message-row outgoing">
+        <div class="message-group">
+          <div class="message-head">
+            <strong>You</strong>
+            <span></span>
+          </div>
+          <div class="message-bubble"></div>
+        </div>
+      </article>
+    </template>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
